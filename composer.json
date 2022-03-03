@@ -1,0 +1,27 @@
+{
+  "name": "macbook/fiado-pode-ser-hoje-service",
+  "autoload": {
+    "psr-4": {
+      "app\\": "app",
+      "core\\": "core"
+    },
+    "files": [
+      "config/Constantes.php",
+      "config/Functions.php"
+    ]
+  },
+  "require": {
+    "slim/slim": "^3.9",
+    "robmorgan/phinx": "^0.12.9",
+    "ext-pdo": "*",
+    "firebase/php-jwt": "^5.5.1",
+    "tuupola/cors-middleware": "^1.2",
+    "phpmailer/phpmailer": "^6.5"
+  },
+  "require-dev": {
+    "symfony/var-dumper": "^5.3"
+  },
+  "config": {
+    "optimize-autoloader": true
+  }
+}
