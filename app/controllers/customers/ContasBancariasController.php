@@ -11,27 +11,31 @@ class ContasBancariasController extends Controller
 {
     public function index(Request $req, Response $res, array $args)
     {
+        $clientesId = $req->getAttribute('Id');
+
         $query = new ContasBancariasModel();
-        $result = $query->where('Ativo', 1)->get();
-        $this->success($result);
+        $result = $query->where('Ativo', 1)->where('ClientesId', $clientesId)->get();
+        return $this->success($result);
     }
 
     public function show(Request $req, Response $res, array $args)
     {
+        $clientesId = $req->getAttribute('Id');
+
         $query = new ContasBancariasModel();
-        $result = $query->where('Id', $args['Id'])->first();
+        $result = $query->where('Id', $args['Id'])->where('ClientesId', $clientesId)->first();
         $this->success($result);
     }
 
     public function create(Request $req)
     {
         $formData = $req->getParsedBody();
+        $clientesId = $req->getAttribute('Id');
 
         $validation = $this->validate($formData, [
-            'BancosId' => 'require',
-            'ClientesId' => 'require',
-            'Nome' => 'require',
-            'Tipo' => 'require'
+            'BancosId' => 'required',
+            'Nome' => 'required',
+            'Tipo' => 'required'
         ]);
 
         if ($validation->hasErros())
@@ -40,27 +44,27 @@ class ContasBancariasController extends Controller
         $query = new ContasBancariasModel();
 
         $query->BancosId = $formData['BancosId'];
-        $query->ClientesId = $formData['ClientesId'];
+        $query->ClientesId = $clientesId;
         $query->Nome = $formData['Nome'];
-        $query->Valor = $formData['Valor'];
+        $query->Valor = $formData['Valor'] ?? 0;
         $query->Tipo = $formData['Tipo'];
 
         $result = $query->save();
 
         if ($result)
-            $this->success(['Mensagem' => 'Cadastro realizado com sucesso.']);
-        $this->error(['Mensagem' => 'Não foi possível realizar o cadastro.']);
+            return $this->success(['Mensagem' => 'Cadastro realizado com sucesso.']);
+        return $this->error(['Mensagem' => 'Não foi possível realizar o cadastro.']);
     }
 
     public function update(Request $req, Response $res, array $args)
     {
         $formData = $req->getParsedBody();
+        $clientesId = $req->getAttribute('Id');
 
         $validation = $this->validate($formData, [
-            'BancosId' => 'require',
-            'ClientesId' => 'require',
-            'Nome' => 'require',
-            'Tipo' => 'require'
+            'BancosId' => 'required',
+            'Nome' => 'required',
+            'Tipo' => 'required'
         ]);
 
         if ($validation->hasErros())
@@ -68,26 +72,28 @@ class ContasBancariasController extends Controller
 
         $query = new ContasBancariasModel();
 
-        if (!$query->where('Id', $args['Id'])->first())
-            return $this->error(['Mensagem' => 'Não foi possível encontrar o cadastro da Conta Bancaria']);
+        if (!$query->where('Id', $args['Id'])->where('ClientesId', $clientesId)->first())
+            return $this->error(['Mensagem' => 'Não foi possível encontrar o cadastro.']);
 
         $query->BancosId = $formData['BancosId'];
-        $query->ClientesId = $formData['ClientesId'];
         $query->Nome = $formData['Nome'];
-        $query->Valor = $formData['Valor'];
+        $query->Valor = $formData['Valor'] ?? 0;
         $query->Tipo = $formData['Tipo'];
 
         if ($query->save())
-            $this->success(['Mensagem' => 'Cadastro atualziar com sucesso.']);
-        $this->error(['Mensagem' => 'Não foi possível atualziar o cadastro.']);
+            return $this->success(['Mensagem' => 'Cadastro atualziar com sucesso.']);
+        return $this->error(['Mensagem' => 'Não foi possível atualziar o cadastro.']);
     }
 
     public function delete(Request $req, Response $res, array $args)
     {
+        dd($args);
+
+        $clientesId = $req->getAttribute('Id');
         $query = new ContasBancariasModel();
 
-        if (!$query->where('Id', $args['Id'])->first())
-            return $this->error(['Mensagem' => 'Não foi possível encontrar o cadastro do colaborador']);
+        if (!$query->where('Id', $args['Id'])->where('ClientesId', $clientesId)->first())
+            return $this->error(['Mensagem' => 'Não foi possível encontrar o cadastro.']);
 
         $query->Ativo = 0;
 

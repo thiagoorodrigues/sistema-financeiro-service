@@ -4,17 +4,18 @@ namespace app\models;
 
 use core\Model;
 
-class ModulosModel extends Model
+class CategoriasClientesModel extends Model
 {
-    protected string $table = 'Modulos';
+    protected string $table = 'CategoriasClientes';
     protected string $primaryKey = 'Id';
     protected bool $timestamp = true;
 
     protected array $fillable = [
+        'ClientesId',
+        'CategoriasId',
+        'Tipo',
         'Nome',
-        'Valor',
-        'Pagina',
         'Icone',
-        'Descricao'
+        'Ativo'
     ];
 }

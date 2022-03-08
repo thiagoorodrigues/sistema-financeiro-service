@@ -16,8 +16,10 @@ class CorsMiddleware
      */
     public function __invoke(RequestHandlerInterface $req, ResponseInterface $res, $next)
     {
-        $res->withHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
-        $res = $next($req, $res);
-        return $res;
+        $response = $next($req, $res);
+        return $response
+            ->withHeader('Access-Control-Allow-Origin', '*')
+            ->withHeader('ccess-Control-Allow-Headers', 'Authorization,Content-Type,x-api-key, Origin')
+            ->withHeader('ccess-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
     }
 }

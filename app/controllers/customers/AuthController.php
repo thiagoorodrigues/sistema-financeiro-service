@@ -74,7 +74,7 @@ class AuthController extends Controller
         $clientes = $clientes->save();
 
         if ($clientes)
-            return $this->success(['Mensagem' => 'Cadastro realizado com sucesso.', 'body' => $clientes]);
+            return $this->success(['Mensagem' => 'Cadastro realizado com sucesso.']);
         return $this->error(['Mensagem' => 'Não foi possível realizar o cadastro.']);
     }
 }

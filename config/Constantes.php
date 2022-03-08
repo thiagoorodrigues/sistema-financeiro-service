@@ -3,10 +3,10 @@
 const dataBase = [
     'production' => [
         'driver' => 'mysql',
-        'host' => '127.0.0.1',
-        'database' => 'sistema_financeiro',
-        'username' => 'root',
-        'password' => '123456',
+        'host' => 'mysql.salesapp.com.br',
+        'database' => 'salesapp',
+        'username' => 'salesapp',
+        'password' => 'Z3pA4EyI0Fxl',
         'charset' => 'utf8',
         'collation' => 'utf8_unicode_ci',
     ],
