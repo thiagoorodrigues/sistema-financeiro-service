@@ -8,7 +8,7 @@ $GLOBALS['db']->transaction();
 
 $app = new \Slim\App(['settings' => ['displayErrorDetails' => true]]);
 
-require_once '../router/cliente.php';
+require_once '../router/costumers.php';
 require_once '../router/dashboard.php';
 require_once '../router/web.php';
 
