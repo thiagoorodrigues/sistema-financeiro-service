@@ -1,6 +1,6 @@
 <?php
 
-require_once '../vendor/autoload.php';
+require __DIR__.'/../vendor/autoload.php';
 
 //call database connection
 $GLOBALS['db'] = (new \core\Connection())->query();
@@ -8,8 +8,7 @@ $GLOBALS['db']->transaction();
 
 $app = new \Slim\App(['settings' => ['displayErrorDetails' => true]]);
 
-require_once '../router/costumers.php';
-require_once '../router/dashboard.php';
-require_once '../router/web.php';
+require __DIR__.'/../router/costumers.php';
+require __DIR__.'/../router/web.php';
 
 $app->run();

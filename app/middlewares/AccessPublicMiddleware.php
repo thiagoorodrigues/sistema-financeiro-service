@@ -11,7 +11,7 @@ class AccessPublicMiddleware
     public function __invoke(Request $request, Response $response, $next)
     {
         try {
-            $token = $request->getHeader('x-api-key')[0] ?? '';
+            $token = $request->getHeader('Authorization')[0] ?? '';
 
             if (!$token)
                 throw new \Exception('Acesso não autorizado.');

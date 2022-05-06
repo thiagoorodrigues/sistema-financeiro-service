@@ -37,7 +37,7 @@ class AuthController extends Controller
                 $token = JWT::encode($payload, tokenJWT, 'HS256');
 
                 $body = [
-                    'Name' => "{$checkEmail->Nome} {$checkEmail->Sobrenome}",
+                    'Name' => $checkEmail->Nome,
                     'Token' => $token
                 ];
 
@@ -56,7 +56,6 @@ class AuthController extends Controller
 
         $validation = $this->validate($formData, [
             'Nome' => 'required',
-            'Sobrenome' => 'required',
             'Email' => 'required|email|unique:ClientesModel',
             'Senha' => 'required'
         ]);
@@ -67,7 +66,6 @@ class AuthController extends Controller
         $clientes = new ClientesModel();
 
         $clientes->Nome = $formData['Nome'];
-        $clientes->Sobrenome = $formData['Sobrenome'];
         $clientes->Email = $formData['Email'];
         $clientes->Senha = $this->hash($formData['Senha']);
 

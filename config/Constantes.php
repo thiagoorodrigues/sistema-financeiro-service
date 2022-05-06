@@ -3,19 +3,19 @@
 const dataBase = [
     'production' => [
         'driver' => 'mysql',
-        'host' => 'mysql.salesapp.com.br',
-        'database' => 'salesapp',
-        'username' => 'salesapp',
-        'password' => 'Z3pA4EyI0Fxl',
+        'host' => 'localhost',
+        'database' => 'sistema_financeiro',
+        'username' => 'root',
+        'password' => 'root',
         'charset' => 'utf8',
         'collation' => 'utf8_unicode_ci',
     ],
     'developer' => [
         'driver' => 'mysql',
-        'host' => 'db',
+        'host' => 'localhost',
         'database' => 'sistema_financeiro',
         'username' => 'root',
-        'password' => '123456',
+        'password' => 'root',
         'charset' => 'utf8',
         'collation' => 'utf8_unicode_ci',
     ]

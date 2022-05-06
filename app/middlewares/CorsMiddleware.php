@@ -2,19 +2,12 @@
 
 namespace app\middlewares;
 
-use Psr\Http\Message\ResponseInterface;
-use Psr\Http\Message\ServerRequestInterface;
-use Psr\Http\Server\RequestHandlerInterface;
+use Slim\Http\Request;
+use Slim\Http\Response;
 
 class CorsMiddleware
 {
-    /**
-     * @param ServerRequestInterface $req
-     * @param ResponseInterface $res
-     * @param callable $next
-     * @return ResponseInterface
-     */
-    public function __invoke(RequestHandlerInterface $req, ResponseInterface $res, $next)
+    public function __invoke(Request $req, Response $res, $next)
     {
         $response = $next($req, $res);
         return $response

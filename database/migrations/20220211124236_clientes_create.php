@@ -11,7 +11,6 @@ final class ClientesCreate extends AbstractMigration
         $table
             ->addColumn('Id', 'uuid')
             ->addColumn('Nome', 'string', ['limit' => 100])
-            ->addColumn('Sobrenome', 'string', ['limit' => 100])
             ->addColumn('Documento', 'string', ['null' => true])
             ->addColumn('Email', 'string', ['limit' => 100])
             ->addColumn('EmailVerificado', 'boolean', ['default' => false])
